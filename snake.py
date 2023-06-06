@@ -30,8 +30,9 @@ class Snake:
         self.segments.append(segment)
 
     def extend(self):
-        #add a new segment to the snake when it eats food
+        # add a new segment to the snake when it eats food
         self.add_segment(self.segments[-1].position())
+
     def up(self):
         if self.head.heading() != DOWN:
             self.head.setheading(UP)
@@ -47,3 +48,10 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
